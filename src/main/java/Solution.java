@@ -20,6 +20,12 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        System.out.println(new Solution().IsPopOrder(new int[]{1,2,3,4,5},new int[]{2,1,3,4,5}));
+        //System.out.println(new Solution().IsPopOrder(new int[]{1,2,3,4,5},new int[]{2,1,3,4,5}));
+        String a1 = "abc";
+        String a4 = new String("abc").intern();
+        System.out.println(a4==a1);
+//        String str1 = "droid";
+//        String str4 = new String("droid").intern();
+//        System.out.println(str4==str1);
     }
 }
