@@ -2,11 +2,12 @@ public class Child extends Parent{
     private  int senior;
     public Child(int senior){
         super(18,"ZhangQIming");
+
         this.senior = senior;
         System.out.println("Child 有参构造器");
     }
     public int setValue(int b,int c){
-        int a = 0;
+        int a = super.a;
         try {
             a = b+c;
             return a+1;
@@ -16,6 +17,9 @@ public class Child extends Parent{
  //           return a+3;
         }
         return a;
+    }
+    public static void getA(int a){
+        a = 20;
     }
     public static void main(String[] args) {
 //        int[] child = new int[6];
@@ -31,6 +35,11 @@ public class Child extends Parent{
 //        for (byte b : message) {
 //            System.out.println(Integer.toBinaryString(0x100 + b).substring(1));
 //        }
-        System.out.println(0x7fffffff+0x7fffffff);
+        byte b = (byte)128;
+        System.out.println();
+        int a =10;
+        int c=a;
+        Child.getA(a);
+        System.out.println(a==c);
     }
 }
