@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3cbe913-4041-4c3e-bf84-ac7aec802c95" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/A_test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Learning Notes/Tencent/Java.md" beforeDir="false" afterPath="$PROJECT_DIR$/Learning Notes/Tencent/Java.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Child.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Child.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Parent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Parent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Test.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Child.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Child.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Parent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Parent.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -31,8 +24,8 @@
         <entry file="file://$PROJECT_DIR$/Learning Notes/Tencent/Java.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="310">
-                <caret line="164" selection-start-line="164" selection-end-line="164" />
+              <first_editor relative-caret-position="461">
+                <caret line="116" column="7" lean-forward="true" selection-start-line="116" selection-start-column="7" selection-end-line="116" selection-end-column="7" />
               </first_editor>
               <second_editor />
             </state>
@@ -129,8 +122,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="676" />
-    <option name="width" value="697" />
+    <option name="x" value="877" />
+    <option name="width" value="496" />
     <option name="height" value="735" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -140,68 +133,34 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="mavenTest01" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mavenTest01" type="462c0819:PsiDirectoryNode" />
+              <item name="mavenTest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mavenTest" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="mavenTest01" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mavenTest01" type="462c0819:PsiDirectoryNode" />
+              <item name="mavenTest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mavenTest" type="462c0819:PsiDirectoryNode" />
               <item name="Learning Notes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="mavenTest01" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mavenTest01" type="462c0819:PsiDirectoryNode" />
+              <item name="mavenTest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mavenTest" type="462c0819:PsiDirectoryNode" />
               <item name="Learning Notes" type="462c0819:PsiDirectoryNode" />
               <item name="Tencent" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="mavenTest01" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mavenTest01" type="462c0819:PsiDirectoryNode" />
+              <item name="mavenTest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mavenTest" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mavenTest01" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mavenTest01" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mavenTest01" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mavenTest01" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mavenTest01" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mavenTest01" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="TestInterface.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
-            </path>
-            <path>
-              <item name="mavenTest01" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mavenTest01" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mavenTest01" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mavenTest01" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -303,6 +262,9 @@
     <option name="localTasksCounter" value="3" />
     <servers />
   </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="194000" />
+  </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
@@ -313,10 +275,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.53061223" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.1913646" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -329,9 +291,9 @@
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="5" weight="0.32786885" />
-      <window_info anchor="bottom" id="Terminal" order="6" weight="0.32786885" />
+      <window_info anchor="bottom" id="Terminal" order="6" weight="0.3275488" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.3289689" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.327787" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.3275488" />
       <window_info anchor="bottom" id="Messages" order="9" weight="0.32786885" />
       <window_info anchor="bottom" id="Jelastic" order="10" weight="0.32833335" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -344,6 +306,9 @@
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Run" order="8" weight="0.3441755" />
     </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First Commit" />
@@ -399,16 +364,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_202/src.zip!/javax/swing/ImageIcon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="216" selection-start-line="216" selection-end-line="216" />
-          <folding>
-            <element signature="e#6758#6759#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_202/src.zip!/javax/swing/ImageIcon.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/ThreadTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
@@ -438,16 +394,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/PriortyTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="37" selection-start-line="37" selection-end-line="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/PriortyTest.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/Solution2.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-94">
@@ -455,18 +402,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ThreadSafeTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="22" column="46" lean-forward="true" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
-          <folding>
-            <element signature="e#149#150#0" expanded="true" />
-            <element signature="e#183#184#0" expanded="true" />
-            <element signature="e#992#993#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ThreadSafeTest.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/Solution.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
@@ -474,9 +410,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ConstantsTest.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ConstantsTest.java" />
     <entry file="file://$PROJECT_DIR$/Learning Notes/Tencent/4.1.0.md" />
     <entry file="file://$PROJECT_DIR$/Learning Notes/Tencent/readme.md" />
     <entry file="file://$PROJECT_DIR$/src/main/java/Test03.java">
@@ -544,17 +478,17 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="20">
             <caret line="1" selection-start-line="1" selection-end-line="1" />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>
@@ -570,17 +504,17 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Learning Notes/Tencent/Java.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="461">
+            <caret line="116" column="7" lean-forward="true" selection-start-line="116" selection-start-column="7" selection-end-line="116" selection-end-column="7" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
       <provider editor-type-id="text-editor">
         <state>
           <caret column="7" selection-start-column="7" selection-end-column="7" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="310">
-            <caret line="164" selection-start-line="164" selection-end-line="164" />
-          </first_editor>
-          <second_editor />
         </state>
       </provider>
     </entry>
