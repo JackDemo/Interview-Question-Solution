@@ -77,16 +77,16 @@ table[0]为头结点的链表中。
     >存储方式不同：<br> 
     Hashtable:链表+数组，数组里面放的是当前hash的第一个数据，链表里面放的是hash冲突的数据
      ConcurrentHashMap是数组+链表+红黑树
-
----
-- 4.1.7 有没有有顺序的Map实现类，如果有，他们是怎么保证有序的。<br>
-LinkedHashMap是基于元素进入集合的顺序或者被访问的先后顺序排序，TreeMap则是基于元素固有顺序（由Comparator或者Comparable确定）
 ---
 
 - 4.1.6  JAVA8的ConcurrentHashMap为什么放弃了分段锁，有什么问题吗，如果你来设计，你如何设计。<br>
 jdk8 放弃了分段锁二是用了node锁，减低锁的粒度，提高性能，并使用CAS操作确保node一些操作的原子性，取代了锁
 但是ConcurrentHashMap的一些操作使用了synchronized锁，而不是ReentrantLock，虽说jdk8
 的synchronized锁性能进行了优化，但是我觉得还是使用ReentrantLock锁能进行更多的性能优化。<br>
+---
+- 4.1.7 有没有有顺序的Map实现类，如果有，他们是怎么保证有序的。<br>
+LinkedHashMap是基于元素进入集合的顺序或者被访问的先后顺序排序，TreeMap则是基于元素固有顺序（由Comparator或者Comparable确定）
+
 ---
 - 4.1.8 抽象类和接口的区别，类可以继承多个类么，接口可以继承多个接口么,类可以实现多个接口么。<br>
 
@@ -120,8 +120,7 @@ jdk8 放弃了分段锁二是用了node锁，减低锁的粒度，提高性能�
 可以脱离存在，部分的生命周期可以超越整体，例如，电脑包含显示器和主机、鼠标等等。而组合表示的是整体和部分的
 强关系，可以不可相互脱离存在，例如人has a 眼睛，嘴，鼻子，耳朵等等。
 
----
--  4.2.0 IO模型有哪些，讲讲你理解的nio ，他和bio，aio的区别是啥，谈谈reactor模型。<br>
+
 
 ---
 - 4.2.0 IO模型有哪些，讲讲你理解的nio ，他和bio，aio的区别是啥，谈谈reactor模型。<br>
