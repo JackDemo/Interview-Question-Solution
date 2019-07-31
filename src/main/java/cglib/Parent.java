@@ -1,3 +1,5 @@
+package cglib;
+
 public class Parent {
     public static String testname;
     static {

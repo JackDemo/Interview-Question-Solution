@@ -225,4 +225,15 @@ epoll（Linux 2.6之前是select、poll，2.6之后是epoll，Windows是iocp）�
      }
 
 ---
-- 4.2.2 反射中，Class.forName和ClassLoader区别 。
+- 4.2.2 反射中，Class.forName和ClassLoader区别 。<br>
+类的加载包括（装载、连接、初始化）<br>
+1) class.forname()除了将类.class文件加载到jvm中之外，还会对类进行解释，
+执行类中的static{}代码块。完成装载、连接任务，可以通过参数控制是否初始化，
+默认初始化。<br>
+2) classloader只是将.class文件加载到jvm中，不执行static中的内容。完成装载任务，
+可以通过参数控制是否连接。默认连接。<br>
+---
+4.2.3 动态代理的几种实现方式及优缺点<br>
+一种是JDK原生动态代理，基于统一的接口，完全原生，无外部依赖。<br>
+一种是CGLIB，基于asm字节码生成库，允许在运行时，对字节码进行修改和动态生成，
+是基于继承的方式实现，但无法动态增强类中被final方法修饰的类<br>
