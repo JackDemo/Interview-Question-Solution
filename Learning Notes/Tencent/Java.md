@@ -72,10 +72,11 @@ table[0]为头结点的链表中。
     | 初始容量  | 16 | 11 |
 
     >计算得到的hashcode不同：<br>
-    ConcurrentHashMap:<br>  计算key的hashcode并与之右移16位做异或，在与0x7fffffff做&运算
+    ConcurrentHashMap:<br>  计算key的hashcode并与之右移16位做异或，在与0x7fffffff做&运算<br>
     Hashtable: <br> 直接计算key.hascode()& 0x7FFFFFFF<br>
+    
     >存储方式不同：<br> 
-    Hashtable:链表+数组，数组里面放的是当前hash的第一个数据，链表里面放的是hash冲突的数据
+    Hashtable:链表+数组，数组里面放的是当前hash的第一个数据，链表里面放的是hash冲突的数据<br>
      ConcurrentHashMap是数组+链表+红黑树
 
 ---
