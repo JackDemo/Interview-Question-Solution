@@ -310,7 +310,7 @@ epoll（Linux 2.6之前是select、poll，2.6之后是epoll，Windows是iocp）�
 ```
 ---
 - 4.2.8 如何在父类中为子类自动完成所有的hashcode和equals实现？这么做有何优劣。<br>
-结合以上要求，得出了以下实现高质量equals方法的诀窍：<br>
+  结合以上要求，得出了以下实现高质量equals方法的诀窍：<br>
 1.使用==符号检查“参数是否为这个对象的引用”。如果是，则返回true。这只不过是一种性能优化，如果比较操作有可能很昂贵，就值得这么做。<br>
 2.使用instanceof操作符检查“参数是否为正确的类型”。如果不是，则返回false。一般来说，所谓“正确的类型”是指equals方法所在的那个类。<br>
 3.把参数转换成正确的类型。因为转换之前进行过instanceof测试，所以确保会成功。<br>
@@ -333,6 +333,156 @@ epoll（Linux 2.6之前是select、poll，2.6之后是epoll，Windows是iocp）�
 
 ---
 - 4.3.0 深拷贝和浅拷贝区别。<br>
-复制引用和复制值的区别。将对象序列化为字节序列后，默认会将该对象的整个对象图进行序列化，再通过反序列即可完美地实现深拷贝。
+  复制引用和复制值的区别。将对象序列化为字节序列后，默认会将该对象的整个对象图进行序列化，再通过反序列即可完美地实现深拷贝。
 ---
 - 4.3.1 数组和链表数据结构的描述以及时间复杂度<br>
+数组是将元素在内存中连续存放，由于每个元素在内存中占用内存空间相同，
+可以通过下标迅速的访问数组中的元素。每次增加或删除一个元素，都需要向后或者
+向前移动大量的元素。所以应用环境应为访问次数较多，增加或删除操作较少的情况。<br>
+链表恰好相反，是通过存放在元素中的指针联系在一起的，在内存中不是顺序存储的。
+在访问元素时需要进行遍历，但在插入及删除元素时，只需找到需要插入或删除元素的前后位置
+，即可插入，不需要移动元素。<br>
+
+|类型|插入或删除|访问 |
+|:----:|----:|----:|
+|数组|O(n)|O(1)|
+|链表|O(1)|O(n)|
+---
+- 4.3.2 error和exception的区别，CheckedException，RuntimeException的区别。<br>
+error:通常是由JVM生成并抛出，大多数错误与代码编写者无关。这些错误不可查，
+因为他们在应用程序的控制和处理能力之外，而且大多数程序运行时不允许出现的
+状况。对于合理的应用程序来说，即使确实发生了错误，本质上也不应该师徒去处理它所引起的异常状况。
+Exception：在Exception分支中有一个重要的子类RuntimeException（运行时异常），这类异常
+是不检查异常，程序中可以选择捕获处理，也可以选择不处理。这类错误一般是由于
+程序逻辑错误引起的，程序应该从逻辑角度尽可能避免这类异常；而RuntimeException之外的异常统称为非运行时异常
+，如果不处理，程序就不能编译通过。如IOException，SQLException等及用户自己定义的异常，一般情况下不自定义检查异常。
+---
+- 4.3.3 请列出5个运行时异常<br>
+ArrayIndexOutException、NullPointerException、ClassCastException、ArithmeticException、ClassNotFoundException、MissingResourceException
+IllegalArgumentException
+---
+- 4.3.4 自定义一个java.lang.String类，这个类是否可以被类加载器加载？为什么。<br>
+不能，因为JVM在类加载时实现了双亲委派模型。类加载器具体可以分为四类，第一类是
+Bootstrap ClassLoader（启动类加载器），处于顶层；
+第二类，Extension ClassLoader（扩展类加载器），处于第二层；
+第三类，Application ClassLoader（应用程序加载器），处于第三层；
+第四类，Customer ClassLoader（用户自定义加载器），处于底层。
+自底向上检查类是否已经被加载，自顶向下尝试加载类。
+<br>
+再简单说下双亲委托机制：如果一个类加载器收到了类加载的请求，
+它首先不会自己尝试去加载这个类，而是把这个请求委派给父类加载器，
+每一个层次的类加载器都是加此，因此所有的加载请求最终到达顶层的
+启动类加载器，只有当父类加载器反馈自己无法完成加载请求时
+（指它的搜索范围没有找到所需的类），子类加载器才会尝试自己去加载。
+<br>
+双亲委派模型可以确保安全性，可以保证所有的Java类库都是由启动类加
+载器加载。如用户编写的java.lang.Object，加载请求传递到启动类加载器，
+启动类加载的是系统中的Object对象，而用户编写的java.lang.Object不会被
+加载。如用户编写的java.lang.virus类，加载请求传递到启动类加载器，启
+动类加载器发现virus类并不是核心Java类，无法进行加载，将会由具体的
+子类加载器进行加载，而经过不同加载器进行加载的类是无法访问彼此的。
+由不同加载器加载的类处于不同的运行时包。所有的访问权限都是基于同
+一个运行时包而言的。
+<br>
+---
+- 4.3.5 说一说你对java.lang.Object对象中hashCode和equals方法的理解。
+在什么场景下需要重新实现这两个方法。<br>
+hashCode方法是native方法，而哈希码本身是提高查找效率的算法，在容器插入
+方面，如果不能插入容器中已经存在的对象，可以先使用hashcode方法进行比较，
+如果相等，在使用equals方法进行判断是否插入，目的是为了提高插入效率。
+在编写equals方法时，需要满足自反性、对称性、传递性、一致性、非空性。
+同样在容器中，如果存入自定义类，如果重新实现了equals方法，那么需要重写hashCode方法，
+因为在get方法中需要比较hashcode方法，如果没有重写，则get为空，但实际上是equals的，
+所以在此场景下需要重写两个方法。
+---
+- 4.3.6 在jdk1.5中，引入了泛型，泛型的存在是用来解决什么问题。<br>
+泛型的本质是参数化类型，也就是说所操作的数据类型被指定为一个参数，泛型的好处
+是在编译的时候检查类型安全，并且所有的强制转换都是自动的和隐式的，以提高代码的重用率。
+---
+- 4.3.7 这样的 a.hashcode() 有什么用，与 a.equals(b)有什么关系。<br>
+hashCode不唯一，equals方法最终确定两个对象是否相等。
+---
+- 4.3.8 有没有可能2个不相等的对象有相同的hashcode。<br>
+有
+---
+- 4.3.9 Java 中的 HashSet 内部是如何工作的。<br>
+底层使用hashmap实现，将存入HashSet中的元素用作hashmap的key，value部分使用
+了一个PRESENT常量代替。
+---
+- 4.4.0  什么是序列化，怎么序列化，为什么序列化，反序列化会遇到什么问题，如何解决。<br>
+序列化：把对象转换为字节序列的过程称为对象的序列化。<br>
+反序列化：把字节序列恢复为对象的过程称为对象的反序列化。<br>
+实现Serializable接口即可序列化。<br>
+当你想把的内存中的对象状态保存到一个文件中或者数据库中时候；<br>
+                      当你想用套接字在网络上传送对象的时候；<br>
+                      当你想通过RMI传输对象的时候；<br>
+ObjectOutputStream代表对象输出流：<br>
+它的writeObject(Object obj)方法可对参数指定的obj对象进行序列化，把得到的字节序列写到一个目标输出流中。<br>
+ObjectInputStream代表对象输入流：<br>
+它的readObject()方法从一个源输入流中读取字节序列，再把它们反序列化为一个对象，并将其返回。<br>
+简单来说，Java的序列化机制是通过在运行时判断类的serialVersionUID来验证版本一致性的。在进行反序列化时，JVM会把传来的字节流中的serialVersionUID与本地相应实体（类）的serialVersionUID进行比较，如果相同就认为是一致的，可以进行反序列化，否则就会出现序列化版本不一致的异常。(InvalidCastException)
+强烈建议在一个可序列化类中显示的定义serialVersionUID，为它赋予明确的值。
+---
+- 4.4.1 java8的新特性。<br>
+
+ >1.Lambda 表达式<br>
+ 
+ java8 四大核心函数式接口Function、Consumer、Supplier、Predicate<br>
+```
+        Arrays.asList("a","b","c").forEach((String e) ->{
+            System.out.println(e);
+        });
+        Arrays.asList("a","b","c").sort((e1,e2)->{
+            int result = e1.compareTo(e2);
+            return result;
+        });
+```
+ >2.接口的默认方法和静态方法
+
+```
+默认方法可重写，可不必重写。
+static方法在多接口继承时需要注意调用方式。
+```
+>3.方法引用
+```
+final Car car = Car.create( Car::new );
+final List< Car > cars = Arrays.asList( car );
+```
+> 4.重复注解<br>
+
+> 5.更好的类型推断
+
+> 6.Optional
+```
+Optional< String > fullName = Optional.ofNullable( null );
+System.out.println( "Full Name is set? " + fullName.isPresent() );        
+System.out.println( "Full Name: " + fullName.orElseGet( () -> "[none]" ) ); 
+System.out.println( fullName.map( s -> "Hey " + s + "!" ).orElse( "Hey Stranger!" ) );
+输出：
+Full Name is set? false
+Full Name: [none]
+Hey Stranger!
+```
+> 7.steam
+```
+final Collection< Task > tasks = Arrays.asList(
+    new Task( Status.OPEN, 5 ),
+    new Task( Status.OPEN, 13 ),
+    new Task( Status.CLOSED, 8 ) 
+);
+final long totalPointsOfOpenTasks = tasks
+    .stream()
+    .filter( task -> task.getStatus() == Status.OPEN )
+    .mapToInt( Task::getPoints )
+    .sum();
+
+System.out.println( "Total points: " + totalPointsOfOpenTasks );
+输出：
+Total points: 18
+```
+>8.Date/Time API(JSR 310)
+
+>9.Base64
+
+>10.使用Metaspace（JEP 122）代替持久代（PermGen space）。
+在JVM参数方面，使用-XX:MetaSpaceSize和-XX:MaxMetaspaceSize代替原来的-XX:PermSize和-XX:MaxPermSize。
