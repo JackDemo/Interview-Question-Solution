@@ -20,4 +20,19 @@ public class Test04 {
         System.out.println("i2="+i2);
         System.out.println("i3="+i3);
     }
+    public static void getTest(){
+
+    }
+    class Test{
+        public void getI(){
+            print();
+            getTest();
+        }
+    }
+    public static void main(String[] args) {
+        int a =1;
+        int b =2;
+        System.out.println(a+b+" ");
+    }
+
 }

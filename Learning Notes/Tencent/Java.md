@@ -259,12 +259,12 @@ epoll（Linux 2.6之前是select、poll，2.6之后是epoll，Windows是iocp）�
     * 优点：没有加锁，效率提升
     * 缺点：类加载时初始化，浪费内存
     */
-   public class Singleton1 {
-       private Singleton1 singleton = new Singleton1();
-       private Singleton1(){
+   public class main.Singleton1 {
+       private main.Singleton1 singleton = new main.Singleton1();
+       private main.Singleton1(){
    
        }
-       public Singleton1 getSingleton(){
+       public main.Singleton1 getSingleton(){
            return singleton;
        }
    }
@@ -274,22 +274,22 @@ epoll（Linux 2.6之前是select、poll，2.6之后是epoll，Windows是iocp）�
      * 优点：加锁，当多线程调用时效率降低
      * 缺点：在需要使用对象时，建立，节省内存。
      */
-    public class Singleton2 {
-        private static Singleton2 singleton;
-        private Singleton2(){
+    public class main.Singleton2 {
+        private static main.Singleton2 singleton;
+        private main.Singleton2(){
     
         }
-        public synchronized static Singleton2 getSingleton(){
+        public synchronized static main.Singleton2 getSingleton(){
             if(singleton==null){
-                singleton = new Singleton2();
+                singleton = new main.Singleton2();
             }
             return singleton;
         }
     
         public static void main(String[] args) {
-            Singleton2 singletontest1 = Singleton2.getSingleton();
-            Singleton2 singletontest2 = Singleton2.getSingleton();
-            Singleton2 singletontest3 = Singleton2.getSingleton();
+            main.Singleton2 singletontest1 = main.Singleton2.getSingleton();
+            main.Singleton2 singletontest2 = main.Singleton2.getSingleton();
+            main.Singleton2 singletontest3 = main.Singleton2.getSingleton();
             System.out.println(singletontest1==singletontest2&&singletontest2==singletontest3);
         }
     }
@@ -299,14 +299,14 @@ epoll（Linux 2.6之前是select、poll，2.6之后是epoll，Windows是iocp）�
     * 使用私有静态内部类的方法，避免实例在类加载时创建，
     * 并达到使用时创建的需求，没有加锁
     */
-   public class Singleton3 {
+   public class main.Singleton3 {
    
-       private Singleton3(){}
-       public static Singleton3 getSingleton3(){
+       private main.Singleton3(){}
+       public static main.Singleton3 getSingleton3(){
            return Holder.singleton;
        }
        private static class Holder{
-           private static final Singleton3 singleton = new Singleton3();
+           private static final main.Singleton3 singleton = new main.Singleton3();
        }
    }
 ```
@@ -636,4 +636,174 @@ Reflection（反射）是动态语言的关键，反射机制允许程序在执�
 - 4.5.3 g1和cms区别，吞吐量有限和相应优先的垃圾收集器选择
 ---
 - 4.5.4 怎么打出线程栈信息
+---
+# 开源框架
+- 4.5.5 简单讲讲tomcat结构，以及类加载器流程，线程模型等。
+---
+- 4.5.6 tomcat如何调优，涉及哪些参数。
+---
+- 4.5.7 讲讲Spring加载流程<br>
+```
+    //装载配置文件
+    ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
+    //在执行上面的一行代码中，Spring IOC容器被创建（ConcurrentHashMap），
+    //同时application.xml中的bean对象被创建，并put进IOC容器中
+    //通过Java中的反射机制以及李彤dom4j（加载读取配置文件）
+    <bean id="user" class="com.test.Bean.User">
+                <property name = "name" value="XiaoMing">
+                <property name = "car" ref="car">
+     </bean>
+     <bean id="car" class="com.test.Bean.Car"></bean>
+     //读取xml中的配置，利用反射机制
+     Class UserClass = Class.ForName("com.test.Bean.User"); 
+     Constructor userconstructor = UserClass.getDeclaredConstructor();
+     User user = userconstructor.newInstance();
+     user.setName("XiaoMing");
+     Class CarClass = Class.ForName("com.test.Bean.Car"); 
+     Constructor carconstructor = CarClass.getDeclaredConstructor();
+     Car car = CarClass.newInstance();
+     user.setCar(car);
+
+    //获得容器中的Bean对象
+    User user = (User)ac.getBean("user");
+
+```
+--- 
+- 4.5.8 Spring AOP实现原理<br>
+面向切面编程，是面向对象编程的一种补充，用于除开系统中分布的哥哥
+模块的横切关注点，比如说事务管理、日志、缓存等。使用动态代理实现，在内存
+中生成一个AOP对象，这个对象包含目标对象的所有方法，在特定的切面
+做增强处理，并回调原来的方法。<br>
+Spring AOP的动态代理主要有两种方式实现，JDK动态代理和cglib动态代理。
+JDK动态代理通过反射来接受被代理的类，但是被代理的类必须实现接口，
+核心类是InvocationHandler和Proxy类。CGLIB动态代理的类一般是没有实现接口的
+类，cglib是一个依靠asm开源包，将代理对象的.class文件加载进来，通过修改
+字节码生成子类来进行代理，可以在运行时动态生成某个类的子类，所以
+通过继承的方式做动态代理。核心类Enhance以及MethodInterceptor类。
+```
+    <!-- 配置目标对象，即被增强的对象 -->
+    <bean id="productDao" class="learningspring.aop.aspectj.xml.demo2.ProductDaoImpl"/>
+
+    <!-- 将增强类(切面类)交给Spring管理 -->
+    <bean id="productEnhancer" class="learningspring.aop.aspectj.xml.demo2.ProductEnhancer"/>
+    
+    <!-- 通过对AOP的配置完成对目标对象产生代理 -->
+    <aop:config>
+        <!-- 表达式配置哪些类的哪些方法需要进行增强 -->
+        <!-- 对ProductDaoImpl类中的save方法进行增强 -->
+        <!--
+        “*” 表示任意返回值类型
+        “..” 表示任意参数
+        -->
+        <aop:pointcut id="pointcut1" expression="execution(* learningspring.aop.aspectj.xml.demo2.ProductDaoImpl.save(..))"/>
+
+        <!-- 配置切面 -->
+        <aop:aspect ref="productEnhancer">
+            <!-- 前置增强 -->
+            <!-- 实现在调用save方法之前调用checkPri方法来进行权限校验-->
+            <aop:before method="checkPri" pointcut-ref="pointcut1"/>
+        </aop:aspect>
+    </aop:config>
+    
+</beans>
+```
+
+
+
+
+--- 
+- 4.5.9 Spring事务的传播属性<br>
+七种3大类
+（总是保证操作在同一事务中）
+1.propagation_required spring默认的事务方式，如果当前存在事务，沿用当前事务，不存在事务，开启一个事务<br>
+2.propagation_suports 以当前事务方式运行，当前没事务，不开启新的事务<br>
+3.propagation_mandatory 强制要有事务，以当前事务方式运行，当前不存在事务，抛出异常<br>
+（总是保证操作不在同一事务中）<br>
+4、propagation_requires_new 总是开启一个新的事务，当前存在事务，将当前事务挂起<br>
+7、propagation_not_supported 以非事务方式运行，如存在事务，讲当前事务挂起<br>
+6、propagation_never 以非事务方式运行，如果当前存在事务，则抛出异常<br>
+7、propagation_nested 嵌套事务，如果当前存在事务，则在嵌套事务中执行，如果没事务，则以required方式运行
+---
+- 4.6.0 Spring如何管理事务<br>
+声明式事务<br>
+编程式事务
+--- 
+
+- 4.6.1 Spring怎么配置事务（具体说出一些关键的xml 元素）。
+配置transactionManager，并注入DataSource，并在tx.advise中配置tx:attributes中配置
+tx:method。并在aop:config中pointcut中指定，并advisor通知者中指定通知类型
+```
+    <!-- 配置事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!-- 配置事务的增强 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <!-- 配置事务的规则 根据实际业务修改-->
+            <tx:method name="*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+    
+    <!-- AOP的配置 -->
+    <aop:config>
+        <aop:pointcut id="pointcut1" expression="execution(* learningspring.transaction.declarative.AccountServiceImpl.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut1"/>
+    </aop:config>
+```
+---
+- 4.6.2 说说你对Spring的理解，非单例注入的原理？它的生命周期？循环注入的原理，aop的实现原理，说说aop中的几个术语，它们是怎么相互工作的。
+核心组件：bean，context，core，tx 单例注入是通过单例beanFactory的子类ApplicationContext进行创建，
+生命周期通过xml init-method 和 destroy-method方法设置，Jointpoint、pointcut
+advise，target，proxy，aspect，weaving，introduction
+---
+- 4.6.3 Springmvc 中DispatcherServlet初始化过程。<br>
+接下来我们对SpringMVC容器和DispatcherServlet的装配流程进行了分析
+
+1）在web.xml中配置<br>
+
+2）调用HttpServletBean 的init方法,拿到初始化参数为DispatcherServlet赋值，并调用FrameworkServlet的 initServletBean()方法<br>
+
+3）接下来调用 initWebApplicationContext() 完成容器的创建<br>
+
+4）创建完容器后刷新容器onRefresh(wac)，将DispatcherServlet与容器关联<br>
+
+5）调用initStrategies方法组装DispatcherServlet<br>
+
+---
+### 网络基础
+- 4.7.1 session与cookie的区别<br>
+1. session存放在服务器端，cookie存放在浏览器端
+2. session被默认存放在服务器的文件系统中
+3. session可以放在数据库中，内存中或者文件中都可以
+4. session依靠sessionID执行，而sessionID存放在本地cookie中，如果本地浏览器
+禁用了cookie，则服务器端session无效，但是可以通过url传输过来生效
+---
+- 4.7.2 cookie的工作原理<br>
+客户端发送一个请求，服务器会为张三产生一个唯一的sessionID识别码（2^128）
+并将其保存在服务器上，之后将报文响应给客户端，并在set-cookie中添加
+首部字段信息，客户端接收到后会保存cookie，当客户端第二次网服务器发送请求时，
+客户端会自动在请求报文中加入cookie信息并发送，服务器接收到之后对比sessionID，从
+服务器文件对比记录，获得状态。
+---
+- 4.7.3 用户访问某网站的全过程<br>
+点击百度首页，其中URL为http://www.baidu.com
+1. 浏览器分析链接指向页面URL
+2. 浏览器向DNS请求解析百度服务器的IP地址
+3. DNS给出IP地址
+4. 建立TCP三次链接
+5. 浏览器发出取文件命令，一般是（http）请求
+6. 百度服务器给出响应，把文件发送给浏览器
+7. 释放TCP链接
+8. 浏览器显示
+
+
+
+
+
+
+
+
+
+
 
