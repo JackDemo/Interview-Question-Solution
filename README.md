@@ -259,12 +259,12 @@ epoll（Linux 2.6之前是select、poll，2.6之后是epoll，Windows是iocp）�
     * 优点：没有加锁，效率提升
     * 缺点：类加载时初始化，浪费内存
     */
-   public class Singleton1 {
-       private Singleton1 singleton = new Singleton1();
-       private Singleton1(){
+   public class main.Singleton1 {
+       private main.Singleton1 singleton = new main.Singleton1();
+       private main.Singleton1(){
    
        }
-       public Singleton1 getSingleton(){
+       public main.Singleton1 getSingleton(){
            return singleton;
        }
    }
@@ -274,22 +274,22 @@ epoll（Linux 2.6之前是select、poll，2.6之后是epoll，Windows是iocp）�
      * 优点：加锁，当多线程调用时效率降低
      * 缺点：在需要使用对象时，建立，节省内存。
      */
-    public class Singleton2 {
-        private static Singleton2 singleton;
-        private Singleton2(){
+    public class main.Singleton2 {
+        private static main.Singleton2 singleton;
+        private main.Singleton2(){
     
         }
-        public synchronized static Singleton2 getSingleton(){
+        public synchronized static main.Singleton2 getSingleton(){
             if(singleton==null){
-                singleton = new Singleton2();
+                singleton = new main.Singleton2();
             }
             return singleton;
         }
     
         public static void main(String[] args) {
-            Singleton2 singletontest1 = Singleton2.getSingleton();
-            Singleton2 singletontest2 = Singleton2.getSingleton();
-            Singleton2 singletontest3 = Singleton2.getSingleton();
+            main.Singleton2 singletontest1 = main.Singleton2.getSingleton();
+            main.Singleton2 singletontest2 = main.Singleton2.getSingleton();
+            main.Singleton2 singletontest3 = main.Singleton2.getSingleton();
             System.out.println(singletontest1==singletontest2&&singletontest2==singletontest3);
         }
     }
@@ -299,14 +299,14 @@ epoll（Linux 2.6之前是select、poll，2.6之后是epoll，Windows是iocp）�
     * 使用私有静态内部类的方法，避免实例在类加载时创建，
     * 并达到使用时创建的需求，没有加锁
     */
-   public class Singleton3 {
+   public class main.Singleton3 {
    
-       private Singleton3(){}
-       public static Singleton3 getSingleton3(){
+       private main.Singleton3(){}
+       public static main.Singleton3 getSingleton3(){
            return Holder.singleton;
        }
        private static class Holder{
-           private static final Singleton3 singleton = new Singleton3();
+           private static final main.Singleton3 singleton = new main.Singleton3();
        }
    }
 ```
